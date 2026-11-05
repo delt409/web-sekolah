@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: '5 Program Keahlian Unggulan SMKN 3 Kendari: Perhotelan, Kuliner (Tata Boga), TJKT (Teknik Jaringan Komputer), Tata Busana, dan Tata Kecantikan.',
 };
 
-export const jurusanList: JurusanData[] = [
+const jurusanList: JurusanData[] = [
   {
     slug: 'hotel',
     name: 'Perhotelan',
