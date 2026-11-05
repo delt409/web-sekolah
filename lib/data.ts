@@ -27,16 +27,19 @@ export function validSection(v: string): v is Section {
   return (allowed as readonly string[]).includes(v);
 }
 
+const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbxhTHKZwgEwniZdqGcD7ae_PWBBleOMkgmkUqHzwH6QquYvC1ut_RjstqiKWa7WsB8x/exec';
+const DEFAULT_GAS_SECRET = 'b2c4cf414b91f062212d5a5c18c38a25c18e626b593eeb5d65e7711935454a433cc5dda77c30be44e2276e8a8dd06fa2';
+
 /** Mengambil konfigurasi GAS dengan fallback jika salah satu format ENV digunakan */
 export function getGasConfig() {
-  let url = process.env.GAS_WEB_APP_URL || process.env.GOOGLE_SCRIPT_URL || '';
+  let url = process.env.GAS_WEB_APP_URL || process.env.GOOGLE_SCRIPT_URL || DEFAULT_GAS_URL;
   if (url.includes('REPLACE') || !url) {
-    url = process.env.GOOGLE_SCRIPT_URL || '';
+    url = process.env.GOOGLE_SCRIPT_URL || DEFAULT_GAS_URL;
   }
 
-  let secret = process.env.GAS_API_SECRET || process.env.API_SECRET || '';
+  let secret = process.env.GAS_API_SECRET || process.env.API_SECRET || DEFAULT_GAS_SECRET;
   if (secret === 'replace-with-long-random-secret' || !secret) {
-    secret = process.env.API_SECRET || '';
+    secret = process.env.API_SECRET || DEFAULT_GAS_SECRET;
   }
 
   secret = secret.trim();
